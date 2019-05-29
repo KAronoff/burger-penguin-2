@@ -1,12 +1,13 @@
 // improting burgers model
-const burgers = require("../models/burgers");
+
+const db = require("../models/")
 
 // exporting the route definitions as a function
 module.exports = (app) => {
   app.get("/", function(req, res){
     // call the find all function
-    burgers.
-      findAll()
+    db.Burger
+      .findAll({})
       .then(dbBurgerData => {
         res.render("index", {burgerData: dbBurgerData})
       })

@@ -1,6 +1,7 @@
 // import dependencies
 const express = require('express');
 const exphbs = require('express-handlebars');
+const db = require("./models")
 
 var app = express();
 const PORT = process.env.PORT || 3000;
@@ -28,5 +29,9 @@ app.get('*', function(req, res) {
   });
 });
 
+
 // turn on server
-app.listen(PORT, () => console.log(`🌍 => listening to http://localhost:${PORT}`));
+db.sequelize.sync({force:false})
+  .then(() => {
+    app.listen(PORT, () => console.log(`🌍 => listening to http://localhost:${PORT}`));
+  })
